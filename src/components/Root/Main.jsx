@@ -9,9 +9,9 @@ function Main() {
         <main className='max-w-5xl mx-auto'>
         <Outlet/>
         </main>
-        <nav className='max-w-5xl mx-auto'>
+        {/* <nav className='max-w-5xl mx-auto'>
             <Navigation/>
-        </nav>
+        </nav> */}
     </div>
   )
 }

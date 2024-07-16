@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navigation() {
   return (
     <div>
       <div className="btm-nav">
-        <button className="text-error">
+        <Link to="/dashboard" className="text-error">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -19,8 +20,8 @@ function Navigation() {
               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
             />
           </svg>
-        </button>
-        <button className="text-primary active">
+        </Link>
+        <Link tran className="text-primary active">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -35,8 +36,8 @@ function Navigation() {
               d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-        </button>
-        <button className="text-error">
+        </Link>
+        <Link className="text-error">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -51,10 +52,10 @@ function Navigation() {
               d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
             />
           </svg>
-        </button>
+        </Link>
       </div>
       <div className="btm-nav">
-        <button className="text-secondary">
+        <Link className="text-secondary">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -69,8 +70,8 @@ function Navigation() {
               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
             />
           </svg>
-        </button>
-        <button className="text-secondary active">
+        </Link>
+        <Link className="text-secondary active">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -85,8 +86,8 @@ function Navigation() {
               d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-        </button>
-        <button className="text-error">
+        </Link>
+        <Link className="text-error">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -101,10 +102,10 @@ function Navigation() {
               d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
             />
           </svg>
-        </button>
+        </Link>
       </div>
       <div className="btm-nav">
-        <button className="text-accent">
+        <Link className="text-accent">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -119,8 +120,8 @@ function Navigation() {
               d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
             />
           </svg>
-        </button>
-        <button className="text-accent active">
+        </Link>
+        <Link className="text-accent active">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -135,8 +136,8 @@ function Navigation() {
               d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-        </button>
-        <button className="text-accent">
+        </Link>
+        <Link className="text-accent">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -151,7 +152,7 @@ function Navigation() {
               d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
             />
           </svg>
-        </button>
+        </Link>
       </div>
     </div>
   );
