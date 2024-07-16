@@ -1,5 +1,6 @@
 import React from 'react'
-import PageBanner from '../Shared/PageBanner/PageBanner'
+import PageBanner from '../../Shared/PageBanner/PageBanner'
+
 
 function Transaction() {
   return (

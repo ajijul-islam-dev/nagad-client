@@ -1,25 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import PageBanner from "../Shared/PageBanner/PageBanner";
+import React, { useContext } from "react";
+import PageBanner from "../../Shared/PageBanner/PageBanner";
+import Modal from "../../Modal/Modal";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 function Home() {
+  const {user} = useContext(AuthContext)
   return (
-    <div>
-      <PageBanner/>
+    <div className="mb-32">
+      <PageBanner />
+      <Modal />
       <div className="text-center mt-16">
-        <div className="avatar">
-          <div className="w-40 rounded-full">
-            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-          </div>
+        <div className="">
+          <img className="block mx-auto" src="/assets/images/logo.png" />
         </div>
-        <h2 className="text-lg font-bold">Name : MD. Azizul Islam</h2>
-        <h2 className="text-lg ">Phone : +880 1751859389</h2>
-        <h2 className="text-lg ">Email : ajijulislamdev@gmail.com</h2>
+
+        <h2 className="text-lg font-bold">Name : {user?.name}</h2>
+        <h2 className="text-lg ">Phone : {user?.phone}</h2>
+        <h2 className="text-lg ">Email : {user?.email}</h2>
+        <h1 className="text-xl font-semibold">Balance : {user?.balance} TK</h1>
+        <div className="flex justify-center gap-2 items-center my-2">
+        <div className="border px-2 py-2">Role : {user?.role?.name}</div>
+        <div className="border px-2 py-2">Status : {user?.role?.status}</div>
+        </div>
       </div>
       <div className="m-10">
         <h1 className="text-xl font-semibold text-center my-10">Services</h1>
         <div className="flex items-center gap-5 justify-center">
-          <Link to="/cash-in">
+          <button  onClick={() => document.getElementById("cash_in").showModal()}>
             <div className="relative">
               <img src="/assets/images/cash-bg.png" className="" />
               <img
@@ -28,8 +35,8 @@ function Home() {
               />
             </div>
             <p className="text-center">Cash-in</p>
-          </Link>
-          <Link to="/cash-out">
+          </button>
+          <button  onClick={() => document.getElementById("cash_out").showModal()}>
             <div className="relative">
               <img src="/assets/images/cash-bg.png" className="" />
               <img
@@ -38,8 +45,8 @@ function Home() {
               />
             </div>
             <p className="text-center">Cash-Out</p>
-          </Link>
-          <Link to="/send-money">
+          </button>
+          <button  onClick={() => document.getElementById("send_money").showModal()}>
             <div className="relative">
               <img src="/assets/images/cash-bg.png" className="" />
               <img
@@ -48,17 +55,7 @@ function Home() {
               />
             </div>
             <p className="text-center">Send Money</p>
-          </Link>
-          <Link to="/transaction">
-            <div className="relative">
-              <img src="/assets/images/cash-bg.png" className="" />
-              <img
-                src="/assets/images/in.png"
-                className="absolute inset-0 m-auto"
-              />
-            </div>
-            <p className="text-center">Transaction</p>
-          </Link>
+          </button>
         </div>
       </div>
     </div>

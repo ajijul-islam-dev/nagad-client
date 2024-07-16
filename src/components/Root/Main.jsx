@@ -6,12 +6,12 @@ function Main() {
   return (
     <div>
         
-        <main className='max-w-5xl mx-auto'>
+        <main className=''>
         <Outlet/>
         </main>
-        {/* <nav className='max-w-5xl mx-auto'>
+        <nav className=''>
             <Navigation/>
-        </nav> */}
+        </nav>
     </div>
   )
 }

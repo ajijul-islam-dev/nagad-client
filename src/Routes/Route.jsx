@@ -1,12 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../components/Root/Main";
-import Home from "../components/Home/Home";
-import SignIn from "../components/SignIn/SignIn";
-import Register from "../components/Register/Register";
-import CashIn from "../components/CashIn/CashIn";
-import CashOut from "../components/CashOut/CashOut";
-import SendMoney from "../components/SendMoney/SendMoney";
-import Transaction from "../components/Transaction/Transaction";
+
+import Home from "../components/Pages/Home/Home";
+import SignIn from "../components/Pages/SignIn/SignIn";
+import Register from "../components/Pages/Register/Register";
+import CashIn from "../components/Pages/CashIn/CashIn";
+import CashOut from "../components/Pages/CashOut/CashOut";
+import SendMoney from "../components/Pages/SendMoney/SendMoney";
+import Transaction from "../components/Pages/Transaction/Transaction";
+import ManageUsers from "../components/Pages/ManageUsers/ManageUsers";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -15,7 +18,7 @@ const router = createBrowserRouter([
       children : [
         {
             path : "/",
-            element : <Home/>
+            element : <PrivateRoute><Home/></PrivateRoute>
         },
         {
             path : "/sign-in",
@@ -41,6 +44,10 @@ const router = createBrowserRouter([
             path : "/transaction",
             element : <Transaction/>
         },
+        {
+            path : "/manage-users",
+            element : <ManageUsers/>
+        }
       ]
     },
   ]);
