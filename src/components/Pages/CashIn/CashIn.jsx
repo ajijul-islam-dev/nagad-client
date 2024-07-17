@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PageBanner from '../../Shared/PageBanner/PageBanner'
 import { CiPhone, CiUnlock } from 'react-icons/ci'
 import { FaBangladeshiTakaSign } from 'react-icons/fa6'
+import { AuthContext } from '../../../Providers/AuthProvider'
+import useAxios from '../../Hooks/useAxios/useAxios'
 
 
 function CashIn() {
+
+  const {axiosSecure} = useAxios();
+  const {user} = useContext(AuthContext)
   const handleCashIn = (e)=>{
     e.preventDefault()
+    const transaction = {
+      agentNamber : e.target.agentNumber.value,
+      userNumber : e.target.userNumber.value,
+      amount : e.target.amount.value,
+      pin : e.target.pin.value,
+      type : "cash-in",
+      status : "pending"
+    } 
+    axiosSecure.post("/transactions",transaction)
+    .then(res => console.log(res.data))
   }
   return (
     <div>
@@ -28,6 +43,8 @@ function CashIn() {
               placeholder="Your Phone"
               className="border-b-2 px-3 py-2 border-error outline-none"
               name="userNumber"
+              defaultValue={user.phone}
+              readOnly
             />
           </div>
           <div className="flex items-center text-error relative">
