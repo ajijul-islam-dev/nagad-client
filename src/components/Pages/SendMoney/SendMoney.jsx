@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import PageBanner from "../../Shared/PageBanner/PageBanner";
 import { CiPhone, CiUnlock } from "react-icons/ci";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import useAxios from "../../Hooks/useAxios/useAxios";
 
 function SendMoney() {
-  const handleSendMoney = () => {};
+  const {user} = useContext(AuthContext);
+  const {axiosSecure} = useAxios()
+  const handleSendMoney = (e) => {
+    e.preventDefault();
+    const info = {
+      reciverNumber : e.target.reciverNumber.value,
+      senderNumber : e.target.senderNumber.value,
+      amount : parseFloat(e.target.amount.value),
+      pin : e.target.pin.value,
+      type : "send-money",
+      status : "aproved"
+    } 
+    axiosSecure.put("/send-money",info)
+    .then(res => console.log(res.data))
+  };
   return (
     <div>
       <form
@@ -16,18 +32,20 @@ function SendMoney() {
           <CiPhone className="text-2xl absolute -left-7" />
           <input
             type="text"
-            placeholder="Agent"
+            placeholder="Reciver"
             className="border-b-2 px-3 py-2 border-error outline-none"
-            name="agentNumber"
+            name="reciverNumber"
           />
         </div>
         <div className="flex items-center text-error relative">
           <CiPhone className="text-2xl absolute -left-7" />
           <input
             type="text"
-            placeholder="Your Phone"
+            placeholder="Sender (you)"
             className="border-b-2 px-3 py-2 border-error outline-none"
-            name="userNumber"
+            name="senderNumber"
+            defaultValue={user.phone}
+            readOnly
           />
         </div>
         <div className="flex items-center text-error relative">
