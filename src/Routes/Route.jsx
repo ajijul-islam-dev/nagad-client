@@ -11,6 +11,8 @@ import Transaction from "../components/Pages/Transaction/Transaction";
 import ManageUsers from "../components/Pages/ManageUsers/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
 import ManageTranscation from "../components/Pages/ManageTranscation/ManageTranscation";
+import AgentRoute from "./AgentRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -31,27 +33,27 @@ const router = createBrowserRouter([
         },
         {
             path : "/cash-in",
-            element : <CashIn/>
+            element : <PrivateRoute><CashIn/></PrivateRoute>
         },
         {
             path : "/cash-out",
-            element : <CashOut/>
+            element : <PrivateRoute><CashOut/></PrivateRoute>
         },
         {
             path : "/send-money",
-            element : <SendMoney/>
+            element : <PrivateRoute><SendMoney/></PrivateRoute>
         },
         {
             path : "/transaction",
-            element : <Transaction/>
+            element : <PrivateRoute> <Transaction/></PrivateRoute>
         },
         {
             path : "/manage-users",
-            element : <ManageUsers/>
+            element : <AdminRoute><ManageUsers/></AdminRoute>
         },
         {
             path : "/manage-transaction",
-            element : <ManageTranscation/>
+            element : <AgentRoute><ManageTranscation/></AgentRoute>
         }
       ]
     },

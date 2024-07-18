@@ -49,6 +49,7 @@ function Navigation() {
         >
           <Link to="/transaction" className="flex items-center flex-col gap-1">
             <GrTransaction className="text-3xl" />
+            Transaction History
           </Link>
         </button>
       </div>

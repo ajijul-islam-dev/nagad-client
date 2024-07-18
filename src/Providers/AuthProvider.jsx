@@ -4,19 +4,23 @@ export const AuthContext = createContext(null);
 function AuthProvider({ children }) {
   const [user, setUser] = useState({});
   const { axiosSecure } = useAxios();
-  const [loading,setLoading] = useState(true)
+  const [loading,setLoading] = useState(true);
+
+
   useEffect(() => {
     axiosSecure.get("/user")
     .then((res)=>{
-      // console.log(res.data.user)
       setUser(res.data.user)
-      if(!user){
-        localStorage.clear()
-      }
       setLoading(false)
     })
   });
-  const authInfo = {user,loading};
+
+  if(!user){
+    localStorage.clear();
+  }
+
+
+  const authInfo = {user,setUser,loading};
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

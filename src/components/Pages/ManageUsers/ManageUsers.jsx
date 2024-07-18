@@ -7,44 +7,55 @@ function ManageUsers() {
 
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
+  const loadUsers = () => {
     axiosSecure.get("/users").then((res) => setUsers(res.data));
-  },[]);
+  };
 
   const handleApprove = (phone) => {
     console.log(phone);
-    axiosSecure.put("/approve", { phone }).then((res) => console.log(res.data));
+    axiosSecure.put("/approve", { phone }).then((res) => {
+      console.log(res.data);
+      loadUsers();
+    });
   };
 
   const handleBlock = (id) => {
     axiosSecure.put("/block", { id }).then((res) => {
       console.log(res.data);
+      loadUsers();
     });
   };
 
   const handleUnblock = (id) => {
     axiosSecure.put("/unBlock", { id }).then((res) => {
       console.log(res.data);
+      loadUsers();
     });
   };
 
-  const handleSearch =(text)=>{
-    axiosSecure.get(`/search?s=${text}`)
-    .then(res => setUsers(res.data))
-  }
+  const handleSearch = (text) => {
+    axiosSecure.get(`/search?s=${text}`).then((res) => setUsers(res.data));
+  };
 
-  const handleSort =(text)=>{
-    axiosSecure.get(`/sort?s=${text}`)
-    .then(res => setUsers(res.data))
-  }
+  const handleSort = (text) => {
+    axiosSecure.get(`/sort?s=${text}`).then((res) => setUsers(res.data));
+  };
 
+  useEffect(() => {
+    loadUsers();
+  }, []);
   return (
     <div>
       <PageBanner />
-      <div className="w-[90%] mx-auto">
-        <div className="flex justify-between items-center ">
-          <label className="input input-bordered flex items-center gap-2 my-10">
-            <input onChange={(e)=> handleSearch(e.target.value)} type="text" className="grow" placeholder="Search" />
+      <div className="w-[90%] mx-auto my-20">
+        <div className="flex justify-between items-center my-10">
+          <label className="input input-bordered flex items-center gap-2">
+            <input
+              onChange={(e) => handleSearch(e.target.value)}
+              type="text"
+              className="grow"
+              placeholder="Search"
+            />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -58,15 +69,16 @@ function ManageUsers() {
               />
             </svg>
           </label>
-          <select onChange={(e)=> handleSort(e.target.value)} className="select select-secondary w-full max-w-xs">
-            <option selected>
-              Pick your favorite language
+          <select
+            onChange={(e) => handleSort(e.target.value)}
+            className="select select-secondary w-full max-w-xs"
+          >
+            <option selected disabled>
+              Search by Role
             </option>
             <option>user</option>
             <option>admin</option>
             <option>agent</option>
-      
-          
           </select>
         </div>
         <div className="overflow-x-auto">
@@ -88,7 +100,7 @@ function ManageUsers() {
               {/* row 1 */}
               {users?.map((user, i) => (
                 <tr key={user._id}>
-                  <th>{i++}</th>
+                  <th>{i + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.phone}</td>
                   <td>{user.email}</td>

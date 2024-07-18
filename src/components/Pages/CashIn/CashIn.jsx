@@ -42,7 +42,7 @@ function CashIn() {
               placeholder="Your Phone"
               className="border-b-2 px-3 py-2 border-error outline-none"
               name="userNumber"
-              defaultValue={user.phone}
+              defaultValue={user?.phone}
               readOnly
             />
           </div>

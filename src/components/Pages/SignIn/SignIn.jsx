@@ -1,33 +1,36 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { CiPhone, CiUnlock } from "react-icons/ci";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios/useAxios";
 import axios from "axios";
-
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 function SignIn() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const {axiosSecure,axiosPublic} = useAxios();
+  const { axiosSecure, axiosPublic } = useAxios();
+  const { user, setUser } = useContext(AuthContext);
 
-  const handleLogin = (e)=>{
+  const handleLogin = (e) => {
     e.preventDefault();
     const userInfo = {
-     phone : e.target.phone.value,
-      pin : e.target.pin.value
-    }
+      phone: e.target.phone.value,
+      pin: e.target.pin.value,
+    };
 
-    axiosPublic.post("/login",userInfo)
-    .then(res => {
-      if(res.data.token){
-        console.log(res.data)
-        localStorage.setItem("token", res.data.token)
-        navigate("/")
-      }
-    })
-    .catch(err => console.log(err.message))
-    
-  }
+    axiosPublic
+      .post("/login", userInfo)
+      .then((res) => {
+        if (res.data.token) {
+          console.log(res.data);
+          localStorage.setItem("token", res.data.token);
+          setUser(res.data.user)
+        }
+        navigate("/");
+      })
+      .catch((err) => console.log(err.message));
+  };
+
   return (
     <div className="max-w-4xl mx-auto">
       <div className="text-center flex items-center justify-center flex-col gap-4 mt-16 w-[70%] mx-auto">
@@ -35,7 +38,10 @@ function SignIn() {
         <h4 className="text-lg font-semibold">Welcome</h4>
       </div>
       <div className="mt-16 mb-32">
-        <form onSubmit={handleLogin} className="flex flex-col items-center gap-5 w-full">
+        <form
+          onSubmit={handleLogin}
+          className="flex flex-col items-center gap-5 w-full"
+        >
           <div className="flex items-center text-error relative w-full">
             <CiPhone className="text-2xl absolute -left-7" />
             <input
@@ -55,12 +61,17 @@ function SignIn() {
             />
           </div>
 
-          <button type="submit" className="btn btn-outline btn-wide px-40 btn-md btn-error rounded-full hover:text-white">
+          <button
+            type="submit"
+            className="btn btn-outline btn-wide px-40 btn-md btn-error rounded-full hover:text-white"
+          >
             Login
           </button>
           <div className="text-center">
             <p className="text-error font-thin">Not registered yet ?</p>
-            <Link to="/Register" className="text-error font-semibold">Register Now</Link>
+            <Link to="/Register" className="text-error font-semibold">
+              Register Now
+            </Link>
           </div>
         </form>
       </div>

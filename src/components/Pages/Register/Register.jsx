@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios/useAxios";
 import axios from "axios";
 
 function Register() {
   const { axiosSecure,axiosPublic } = useAxios();
+
+  const navigate = useNavigate()
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ function Register() {
     };
 
     axiosPublic.post("/sign-up",userInfo)
-    .then(res=> console.log(res.data))
+    .then(res=> navigate("/sign-in"))
     .catch(err => console.log(err.message))
   };
   return (

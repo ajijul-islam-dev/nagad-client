@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
 import { Navigate, useNavigate } from "react-router-dom";
 
-function PrivateRoute({ children }) {
+function AdminRoute({ children }) {
   const { user, loading } = useContext(AuthContext);
   const navigate = useNavigate();
   if (loading) {
@@ -13,11 +13,11 @@ function PrivateRoute({ children }) {
     );
   }
   const token = localStorage.getItem("token")
-  if (user && token) {
+  if (user && user.role.name === "admin" && user.role.status === "approved" && token) {
     return children;
   }
 
   return <Navigate to="/sign-in"/>
 }
 
-export default PrivateRoute;
+export default AdminRoute;

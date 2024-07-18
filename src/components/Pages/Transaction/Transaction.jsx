@@ -10,7 +10,7 @@ function Transaction() {
   const [transactions,setTransactions] = useState([]);
 
   const info = {
-    phone : user.phone
+    phone : user?.phone
   }
   useEffect(()=>{
     axiosSecure.get(`/transactions?phone=${info.phone}`)
@@ -20,7 +20,7 @@ function Transaction() {
   return (
     <div>
       <PageBanner />
-      <div className="">
+      <div className="w-[90%] mx-auto">
         <div className="overflow-x-auto">
           <table className="table table-zebra">
             {/* head */}
@@ -33,7 +33,7 @@ function Transaction() {
               </tr>
             </thead>
             <tbody>
-            {transactions.map((req,i) => (
+            {transactions?.map((req,i) => (
                 <tr key={req._id}>
                   <th key={req._id}>{i+1}</th>
                   <td>{req.reciverNumber}</td>

@@ -44,7 +44,7 @@ function SendMoney() {
             placeholder="Sender (you)"
             className="border-b-2 px-3 py-2 border-error outline-none"
             name="senderNumber"
-            defaultValue={user.phone}
+            defaultValue={user?.phone}
             readOnly
           />
         </div>
@@ -71,7 +71,7 @@ function SendMoney() {
           type="submit"
           className="btn btn-outline btn-wide  btn-md btn-error rounded-full hover:text-white"
         >
-          Cash In
+          Send money
         </button>
       </form>
     </div>
