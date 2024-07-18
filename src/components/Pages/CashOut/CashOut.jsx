@@ -6,20 +6,19 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import useAxios from "../../Hooks/useAxios/useAxios";
 
 function CashOut() {
-  const {user} = useContext(AuthContext)
-  const {axiosSecure} = useAxios()
+  const { user } = useContext(AuthContext);
+  const { axiosSecure } = useAxios();
   const handleCashOut = (e) => {
     e.preventDefault();
     const info = {
-      agentNumber : e.target.agentNumber.value,
-      userNumber : e.target.userNumber.value,
-      amount : parseFloat(e.target.amount.value),
-      pin : e.target.pin.value,
-      type : "cash-out",
-      status : "aproved"
-    } 
-    axiosSecure.put("/cash-out",info)
-    .then(res => console.log(res.data))
+      reciverNumber: e.target.agentNumber.value,
+      senderNumber: e.target.userNumber.value,
+      amount: parseFloat(e.target.amount.value),
+      pin: e.target.pin.value,
+      type: "cash-out",
+      status: "pending",
+    };
+    axiosSecure.put("/cash-out", info).then((res) => console.log(res.data));
   };
   return (
     <div>

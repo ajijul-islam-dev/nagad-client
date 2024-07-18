@@ -31,6 +31,19 @@ function Navigation() {
             </Link>
           </button>
         )}
+        {user?.role?.name === "agent" && user?.role?.status === "approved" && (
+          <button
+            className={`text-error ${pathname === "/manage-Transaction" && "active"}`}
+          >
+            <Link
+              to="/manage-Transaction"
+              className="flex items-center flex-col gap-1"
+            >
+              <GrUserManager className="text-3xl" />
+              Manage Transaction
+            </Link>
+          </button>
+        )}
         <button
           className={`text-error ${pathname === "/transaction" && "active"}`}
         >

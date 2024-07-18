@@ -12,15 +12,14 @@ function CashIn() {
   const {user} = useContext(AuthContext)
   const handleCashIn = (e)=>{
     e.preventDefault()
-    const transaction = {
-      agentNamber : e.target.agentNumber.value,
-      userNumber : e.target.userNumber.value,
-      amount : e.target.amount.value,
-      pin : e.target.pin.value,
+    const info = {
+      senderNumber : e.target.agentNumber.value,
+      reciverNumber : e.target.userNumber.value,
+      amount : parseFloat(e.target.amount.value),
       type : "cash-in",
       status : "pending"
     } 
-    axiosSecure.post("/transactions",transaction)
+    axiosSecure.post("/cash-in",info)
     .then(res => console.log(res.data))
   }
   return (
@@ -56,16 +55,6 @@ function CashIn() {
               name="amount"
             />
           </div>
-          <div className="flex items-center text-error relative">
-            <CiUnlock className="text-2xl absolute -left-7" />
-            <input
-              type="password"
-              placeholder="Enter You 5 digit pin"
-              className="border-b-2 px-3 py-2 border-error outline-none "
-              name="pin"
-            />
-          </div>
-
           <button type="submit" className="btn btn-outline btn-wide  btn-md btn-error rounded-full hover:text-white">
             Cash In
           </button>

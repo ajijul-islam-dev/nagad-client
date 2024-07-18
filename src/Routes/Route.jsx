@@ -10,6 +10,7 @@ import SendMoney from "../components/Pages/SendMoney/SendMoney";
 import Transaction from "../components/Pages/Transaction/Transaction";
 import ManageUsers from "../components/Pages/ManageUsers/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
+import ManageTranscation from "../components/Pages/ManageTranscation/ManageTranscation";
 
 const router = createBrowserRouter([
     {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
         {
             path : "/manage-users",
             element : <ManageUsers/>
+        },
+        {
+            path : "/manage-transaction",
+            element : <ManageTranscation/>
         }
       ]
     },
