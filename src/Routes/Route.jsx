@@ -15,48 +15,77 @@ import AgentRoute from "./AgentRoute";
 import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main/>,
-      children : [
-        {
-            path : "/",
-            element : <PrivateRoute><Home/></PrivateRoute>
-        },
-        {
-            path : "/sign-in",
-            element : <SignIn/>
-        },
-        {
-            path : "/register",
-            element : <Register/>
-        },
-        {
-            path : "/cash-in",
-            element : <PrivateRoute><CashIn/></PrivateRoute>
-        },
-        {
-            path : "/cash-out",
-            element : <PrivateRoute><CashOut/></PrivateRoute>
-        },
-        {
-            path : "/send-money",
-            element : <PrivateRoute><SendMoney/></PrivateRoute>
-        },
-        {
-            path : "/transaction",
-            element : <PrivateRoute> <Transaction/></PrivateRoute>
-        },
-        {
-            path : "/manage-users",
-            element : <AdminRoute><ManageUsers/></AdminRoute>
-        },
-        {
-            path : "/manage-transaction",
-            element : <AgentRoute><ManageTranscation/></AgentRoute>
-        }
-      ]
-    },
-  ]);
-  
-  export default router
+  {
+    path: "/",
+    element: <Main />,
+    children: [
+      {
+        path: "/",
+        element: (
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/sign-in",
+        element: <SignIn />,
+      },
+      {
+        path: "/register",
+        element: <Register />,
+      },
+      {
+        path: "/cash-in",
+        element: (
+          <PrivateRoute>
+            <CashIn />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/cash-out",
+        element: (
+          <PrivateRoute>
+            <CashOut />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/send-money",
+        element: (
+          <PrivateRoute>
+            <SendMoney />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/transaction",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Transaction />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/manage-users",
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "/manage-transaction",
+        element: (
+          <AgentRoute>
+            <ManageTranscation />
+          </AgentRoute>
+        ),
+      },
+    ],
+  },
+]);
+
+export default router;

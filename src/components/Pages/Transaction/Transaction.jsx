@@ -26,10 +26,11 @@ function Transaction() {
             {/* head */}
             <thead>
               <tr>
-                <th></th>
+                <th>Sl.</th>
                 <th>Name</th>
                 <th>Job</th>
                 <th>Favorite Color</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>

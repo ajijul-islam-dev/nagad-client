@@ -4,22 +4,40 @@ import { CiPhone, CiUnlock } from "react-icons/ci";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import useAxios from "../../Hooks/useAxios/useAxios";
+import { toast } from "react-toastify";
 
 function SendMoney() {
-  const {user} = useContext(AuthContext);
-  const {axiosSecure} = useAxios()
+  const { user } = useContext(AuthContext);
+  const { axiosSecure } = useAxios();
   const handleSendMoney = (e) => {
     e.preventDefault();
     const info = {
-      reciverNumber : e.target.reciverNumber.value,
-      senderNumber : e.target.senderNumber.value,
-      amount : parseFloat(e.target.amount.value),
-      pin : e.target.pin.value,
-      type : "send-money",
-      status : "aproved"
-    } 
-    axiosSecure.put("/send-money",info)
-    .then(res => console.log(res.data))
+      reciverNumber: e.target.reciverNumber.value,
+      senderNumber: e.target.senderNumber.value,
+      amount: parseFloat(e.target.amount.value),
+      pin: e.target.pin.value,
+      type: "send-money",
+      status: "aproved",
+    };
+    axiosSecure
+      .put("/send-money", info)
+      .then((res) => {
+        if (res.data.status == 303) {
+          return toast.error("give a valid reciver number");
+        } else if (res.data.status == 301) {
+          return toast.error("invalid credential");
+        } else if (res.data.status == 300) {
+          return toast.error("less then 50 tk is not allowed");
+        } else if (res.data.status == 304) {
+          return toast.error("Blocked user can't make any transaction");
+        } else if (res.data.status == 305) {
+          return toast.error("Non Approved user can't make any transaction");
+        } else {
+          toast.success("Sent money successfull");
+          e.target.reset();
+        }
+      })
+      .catch((err) => toast.err(err.messages));
   };
   return (
     <div>

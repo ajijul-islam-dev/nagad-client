@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import PageBanner from "../../Shared/PageBanner/PageBanner";
 import Modal from "../../Modal/Modal";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { toast } from "react-toastify";
 
 function Home() {
   const { user } = useContext(AuthContext);
@@ -22,7 +23,15 @@ function Home() {
           <div className="border px-2 py-2">Role : {user?.role?.name}</div>
           <div className="border px-2 py-2">Status : {user?.role?.status}</div>
         </div>
-        <button onClick={()=> localStorage.clear()} className="btn btn-error mt-2">Log out</button>
+        <button
+          onClick={() => {
+            localStorage.clear();
+            toast.success("Logged Out");
+          }}
+          className="btn btn-error mt-2"
+        >
+          Log out
+        </button>
       </div>
       <div className="m-10">
         <h1 className="text-xl font-semibold text-center my-10">Services</h1>

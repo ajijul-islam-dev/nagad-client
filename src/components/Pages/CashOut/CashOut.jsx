@@ -4,6 +4,7 @@ import { CiPhone, CiUnlock } from "react-icons/ci";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import useAxios from "../../Hooks/useAxios/useAxios";
+import { toast } from "react-toastify";
 
 function CashOut() {
   const { user } = useContext(AuthContext);
@@ -18,7 +19,23 @@ function CashOut() {
       type: "cash-out",
       status: "pending",
     };
-    axiosSecure.put("/cash-out", info).then((res) => console.log(res.data));
+    axiosSecure
+      .put("/cash-out", info)
+      .then((res) => {
+        if (res.data.status == 301) {
+          return toast.error("Invalid Credential");
+        } else if (res.data.status == 302) {
+          return toast.error("please give a valid Agent Number");
+        } else if (res.data.status == 304) {
+          return toast.error("Blocked user can't make any transaction");
+        } else if (res.data.status == 305) {
+          return toast.error("Non Approved user can't make any transaction");
+        } else {
+          toast.success("Request Sent to the Agent");
+          e.target.reset();
+        }
+      })
+      .catch((err) => toast.err(err.messages));
   };
   return (
     <div>

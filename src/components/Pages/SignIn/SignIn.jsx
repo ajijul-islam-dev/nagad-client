@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios/useAxios";
 import axios from "axios";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import { toast } from "react-toastify";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -18,17 +19,24 @@ function SignIn() {
       pin: e.target.pin.value,
     };
 
+
+
     axiosPublic
       .post("/login", userInfo)
       .then((res) => {
         if (res.data.token) {
           console.log(res.data);
           localStorage.setItem("token", res.data.token);
-          setUser(res.data.user)
+          setUser(res.data.user);
+          toast.success("logged In")
+        }
+        else{
+          toast.error("Failed")
+
         }
         navigate("/");
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => toast.error(err.message));
   };
 
   return (

@@ -2,11 +2,12 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAxios from "../../Hooks/useAxios/useAxios";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function Register() {
-  const { axiosSecure,axiosPublic } = useAxios();
+  const { axiosSecure, axiosPublic } = useAxios();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -15,13 +16,30 @@ function Register() {
       phone: e.target.phone.value,
       email: e.target.email.value,
       pin: e.target.password.value,
-      role: {name : e.target.role.value, status : "pending"},
+      role: { name: e.target.role.value, status: "pending" },
       balance: 0,
     };
 
-    axiosPublic.post("/sign-up",userInfo)
-    .then(res=> navigate("/sign-in"))
-    .catch(err => console.log(err.message))
+    if(!typeof(userInfo.pin) == "number"){
+      return toast.error("Pin Must be Numbers Only")
+    }else if(userInfo.pin.length <5 && userInfo.pin.length >5){
+      return toast.error("Pin Must be within 5 charecter")
+    }
+
+    axiosPublic
+      .post("/sign-up", userInfo)
+      .then((res) => {
+        if (res.data.status == 301) {
+          return toast.warning("Account Already Exist");
+        }
+
+        toast.success("Account created Successfully");
+        navigate("/sign-in");
+        toast.success("Account created Successfully");
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
   return (
     <div className="max-w-4xl mx-auto">

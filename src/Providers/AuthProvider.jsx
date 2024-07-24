@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import useAxios from "../components/Hooks/useAxios/useAxios";
+import { toast } from "react-toastify";
 export const AuthContext = createContext(null);
 function AuthProvider({ children }) {
   const [user, setUser] = useState({});
@@ -13,11 +14,14 @@ function AuthProvider({ children }) {
       setUser(res.data.user)
       setLoading(false)
     })
+    .catch(err => {
+      localStorage.clear();
+      setLoading(false)
+      toast.error(err.meaage)
+    })
   });
 
-  if(!user){
-    localStorage.clear();
-  }
+
 
 
   const authInfo = {user,setUser,loading};

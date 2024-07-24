@@ -12,8 +12,9 @@ function PrivateRoute({ children }) {
       </div>
     );
   }
+
   const token = localStorage.getItem("token")
-  if (user && token) {
+  if (user.phone && token) {
     return children;
   }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PageBanner from "../../Shared/PageBanner/PageBanner";
 import useAxios from "../../Hooks/useAxios/useAxios";
+import { toast } from "react-toastify";
 
 function ManageUsers() {
   const { axiosSecure } = useAxios();
@@ -13,32 +14,53 @@ function ManageUsers() {
 
   const handleApprove = (phone) => {
     console.log(phone);
-    axiosSecure.put("/approve", { phone }).then((res) => {
-      console.log(res.data);
-      loadUsers();
-    });
+    axiosSecure
+      .put("/approve", { phone })
+      .then((res) => {
+        loadUsers();
+        return toast.success("Account Approved");
+      })
+      .catch((err) => {
+        return toast.error(err.message);
+      });
   };
 
   const handleBlock = (id) => {
-    axiosSecure.put("/block", { id }).then((res) => {
-      console.log(res.data);
-      loadUsers();
-    });
+    axiosSecure
+      .put("/block", { id })
+      .then((res) => {
+        toast.success("Account Blocked");
+        loadUsers();
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   const handleUnblock = (id) => {
-    axiosSecure.put("/unBlock", { id }).then((res) => {
-      console.log(res.data);
-      loadUsers();
-    });
+    axiosSecure
+      .put("/unBlock", { id })
+      .then((res) => {
+        toast.success("Account Unblocked");
+        loadUsers();
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   const handleSearch = (text) => {
-    axiosSecure.get(`/search?s=${text}`).then((res) => setUsers(res.data));
+    axiosSecure
+      .get(`/search?s=${text}`)
+      .then((res) => setUsers(res.data))
+      .catch((err) => toast.err(err.messages));
   };
 
   const handleSort = (text) => {
-    axiosSecure.get(`/sort?s=${text}`).then((res) => setUsers(res.data));
+    axiosSecure
+      .get(`/sort?s=${text}`)
+      .then((res) => setUsers(res.data))
+      .catch((err) => toast.err(err.messages));
   };
 
   useEffect(() => {
