@@ -24,6 +24,8 @@ function SendMoney() {
       .then((res) => {
         if (res.data.status == 303) {
           return toast.error("give a valid reciver number");
+        }else if (res.data.status == 507) {
+          return toast.error("Insufficient Balance");
         } else if (res.data.status == 301) {
           return toast.error("invalid credential");
         } else if (res.data.status == 300) {

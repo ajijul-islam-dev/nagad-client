@@ -15,10 +15,15 @@ function AuthProvider({ children }) {
       setLoading(false)
     })
     .catch(err => {
-      localStorage.clear();
+      
       setLoading(false)
       toast.error(err.meaage)
     })
+
+    if(!user){
+      localStorage.clear();
+    }
+
   });
 
 

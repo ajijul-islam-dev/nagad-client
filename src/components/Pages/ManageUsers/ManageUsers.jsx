@@ -60,7 +60,7 @@ function ManageUsers() {
     axiosSecure
       .get(`/sort?s=${text}`)
       .then((res) => setUsers(res.data))
-      .catch((err) => toast.err(err.messages));
+      .catch((err) => toast.error(err.messages));
   };
 
   useEffect(() => {

@@ -50,7 +50,7 @@ function Register() {
       <div className="mt-10 mb-32">
         <form
           onSubmit={handleRegister}
-          className="flex flex-col items-center gap-5"
+          className="flex flex-col items-center gap-5 w-[75%] mx-auto md:w-full"
         >
           <div className="flex items-center text-error relative w-full">
             <input
@@ -84,7 +84,7 @@ function Register() {
               name="password"
             />
           </div>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-2 md:gap-5">
             <input
               type="radio"
               name="role"
@@ -109,7 +109,7 @@ function Register() {
           </div>
           <button
             type="submit"
-            className="btn btn-outline px-20 btn-md btn-wide btn-error rounded-full hover:text-white"
+            className="btn btn-outline px-20 btn-md md:btn-wide btn-error rounded-full hover:text-white"
           >
             Register
           </button>

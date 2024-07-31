@@ -24,6 +24,8 @@ function CashOut() {
       .then((res) => {
         if (res.data.status == 301) {
           return toast.error("Invalid Credential");
+        }else if (res.data.status == 507) {
+          return toast.error("Insufficient Balance");
         } else if (res.data.status == 302) {
           return toast.error("please give a valid Agent Number");
         } else if (res.data.status == 304) {

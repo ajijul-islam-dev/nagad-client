@@ -7,7 +7,7 @@ function Transaction() {
   const {axiosSecure} = useAxios();
   const {user} = useContext(AuthContext);
 
-  const [transactions,setTransactions] = useState([]);
+  const [transactions,setTransactions] = useState([]) || [];
 
   const info = {
     phone : user?.phone
@@ -20,7 +20,7 @@ function Transaction() {
   return (
     <div>
       <PageBanner />
-      <div className="w-[90%] mx-auto">
+      <div className="w-[90%] mx-auto my-20">
         <div className="overflow-x-auto">
           <table className="table table-zebra">
             {/* head */}
@@ -28,16 +28,16 @@ function Transaction() {
               <tr>
                 <th>Sl.</th>
                 <th>Name</th>
-                <th>Job</th>
-                <th>Favorite Color</th>
-                <th>Actions</th>
+                <th>Amount</th>
+                <th>Transaction Type</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
-            {transactions?.map((req,i) => (
+            {transactions?.length > 0 && transactions?.map((req,i) => (
                 <tr key={req._id}>
                   <th key={req._id}>{i+1}</th>
-                  <td>{req.reciverNumber}</td>
+                  <td>{req.senderNumber}</td>
                   <td>{req.amount}</td>
                  
                   <td>{req.type}</td>

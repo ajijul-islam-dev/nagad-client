@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 function Main() {
   return (
     <div>
-      <main className="">
+      <main>
         <Outlet />
       </main>
       <nav className="">

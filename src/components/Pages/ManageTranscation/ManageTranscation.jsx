@@ -21,6 +21,8 @@ function ManageTranscation() {
       .then((res) => {
         if (res.data.status == 200) {
           toast.success("Transaction Succesed");
+        }else if (res.data.status == 507) {
+          return toast.error("Insufficient Balance");
         } else if (res.data.status == 400) {
           toast.error("something Went Wrong");
         }
@@ -31,7 +33,7 @@ function ManageTranscation() {
   return (
     <div className="">
       <PageBanner />
-      <div className="w-[90%] mx-auto">
+      <div className="w-[90%] mx-auto my-20">
         <div className="overflow-x-auto">
           <table className="table table-zebra">
             {/* head */}

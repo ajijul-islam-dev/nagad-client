@@ -32,7 +32,7 @@ function CashIn() {
           e.target.reset();
         }
       })
-      .catch((err) => toast.err(err.messages));
+      .catch((err) => toast.error(err.messages));
   };
   return (
     <div>

@@ -13,7 +13,7 @@ function AdminRoute({ children }) {
     );
   }
   const token = localStorage.getItem("token")
-  if (user && user.role.name === "admin" && user.role.status === "approved" && token) {
+  if (user && user?.role?.name === "admin" && user?.role?.status === "approved" && token) {
     return children;
   }
 

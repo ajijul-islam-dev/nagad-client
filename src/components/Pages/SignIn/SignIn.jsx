@@ -24,6 +24,8 @@ function SignIn() {
     axiosPublic
       .post("/login", userInfo)
       .then((res) => {
+        console.log(res)
+
         if (res.data.token) {
           console.log(res.data);
           localStorage.setItem("token", res.data.token);
@@ -36,7 +38,10 @@ function SignIn() {
         }
         navigate("/");
       })
-      .catch((err) => toast.error(err.message));
+      .catch((err) => {
+        console.log(err)
+        toast.error(err.message)
+      });
   };
 
   return (
@@ -48,7 +53,7 @@ function SignIn() {
       <div className="mt-16 mb-32">
         <form
           onSubmit={handleLogin}
-          className="flex flex-col items-center gap-5 w-full"
+          className="flex flex-col items-center gap-5 w-[75%] mx-auto md:w-full"
         >
           <div className="flex items-center text-error relative w-full">
             <CiPhone className="text-2xl absolute -left-7" />
@@ -71,7 +76,7 @@ function SignIn() {
 
           <button
             type="submit"
-            className="btn btn-outline btn-wide px-40 btn-md btn-error rounded-full hover:text-white"
+            className="btn btn-outline md:btn-wide px-20 md:px-40 btn-md btn-error rounded-full hover:text-white"
           >
             Login
           </button>
